@@ -28,6 +28,7 @@ Features
  - Authentication with **Supabase** or **Firebase**
     - Email/password or passwordless with magic link
     - Multiple providers: Google, Facebook, Twitter, Github, Discord,...
+ - **jotai** for primitive & flexible state management
  - **SWR** for data fetching
  - Useful React Hooks
    - `useAuth` for getting user information
