@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "setup": "npx envdist",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -30,5 +31,10 @@
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.7",
     "typescript": "4.3.5"
+  },
+  "env": {
+    "path": ".",
+    "dist": ".env.dist",
+    "pattern": ".env.local"
   }
 }

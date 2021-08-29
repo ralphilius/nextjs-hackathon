@@ -4,7 +4,15 @@ A boilerplate for NextJS application with Typescript support
 Getting Started
 --------
 
-First, run the development server:
+First, set up environment variables:
+
+```bash
+npm run setup
+# or
+yarn setup 
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -26,4 +34,5 @@ Features
  - Handful React Hooks
    - `useAuth` for getting user information
    - `useInterval` for for timeout tasks
+ - **envdist** to set up environment variables
  - Multiple icons with **Heroicons**
