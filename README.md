@@ -24,15 +24,18 @@ Features
 --------
 
  - **Typescript** support
- - **TailwindCSS** for styling with utility-first classes
- - Authentication with Supabase or Firebase
+ - **envdist** to set up environment variables
+ - Authentication with **Supabase** or **Firebase**
     - Email/password or passwordless with magic link
     - Multiple providers: Google, Facebook, Twitter, Github, Discord,...
  - **SWR** for data fetching
- - **NProgress** for page transition progress indicator
- - Custom 404, 403 pages
- - Handful React Hooks
+ - Useful React Hooks
    - `useAuth` for getting user information
    - `useInterval` for for timeout tasks
- - **envdist** to set up environment variables
+ - **await-to-js** for easier error handling with async functions
+ - **TailwindCSS** for styling with utility-first classes
+   - **@tailwindcss/forms**: Form reset for easier applying utility classes
+   - **@tailwindcss/aspect-ratio**: Utilities to apply aspect ratio to elements
+ - **NProgress** for page transition progress indicator
+ - Custom 404, 403 pages
  - Multiple icons with **Heroicons**
