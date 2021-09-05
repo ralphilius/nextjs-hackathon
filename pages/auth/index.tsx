@@ -8,7 +8,7 @@ function isValidEmail(email): boolean {
 const AuthPage = () => {
   const { signinWithEmail, signinWithProvider } = useAuth();
   const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>(null);
+  const [emailSent, setEmailSent] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ const AuthPage = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-5">
         <div className="bg-white py-8 px-10 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-2">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email address
@@ -36,61 +36,38 @@ const AuthPage = () => {
                   onBlur={() => {
                     if(!isValidEmail(email) && email.length > 0) setInvalidEmail(true);
                   }}
+                  onInput={() => {
+                    setInvalidEmail(false);
+                    setEmailSent(false);
+                  }}
                 />
               </div>
             </div>
+            {emailSent && <div className="p-2 text-xs text-green-700">
+              We sent an email to you (<b>{email}</b>). It has a magic link that&apos;ll sign you in. Please also check your Spam inbox!
+            </div>}
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <div className="mt-1">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                />
-              </div>
-            </div>
+            {invalidEmail && <div className="p-2 text-xs text-red-700">
+              Please enter a valid email address.
+            </div>}
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <a href="#" className="font-medium text-green-600 hover:text-green-500">
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
-
-            <div>
+            <div className="pt-2">
               <button
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 onClick={(e) => {
                   e.preventDefault();
                   if(isValidEmail(email)){
-                    signinWithEmail(email, password);
+                    signinWithEmail(email).then(user => {
+                      setEmailSent(true);
+                    });
                   } else {
                     setInvalidEmail(true)
                   }
+                 
                 }}
               >
-                Sign in
+                Sign in with magic link
               </button>
             </div>
           </form>
